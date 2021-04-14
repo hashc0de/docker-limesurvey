@@ -27,8 +27,8 @@ wget -P /tmp "https://github.com/LimeSurvey/LimeSurvey/archive/${NEW_VERSION}.ta
 SHA256_CHECKSUM=$(sha256sum "/tmp/${NEW_VERSION}.tar.gz" | awk '{ print $1 }')
 
 # Update lines in the files
-sed -r -i -e "s/[0-9]+(\.[0-9]+)+\+[0-9]+/$NEW_VERSION/" $MAJOR_VERSION/apache/Dockerfile $MAJOR_VERSION/fpm/Dockerfile $MAJOR_VERSION/fpm-alpine/Dockerfile
-sed -r -i -e "s/[A-Fa-f0-9]{64}/$SHA256_CHECKSUM/" $MAJOR_VERSION/apache/Dockerfile $MAJOR_VERSION/fpm/Dockerfile $MAJOR_VERSION/fpm-alpine/Dockerfile
+sed -i -e "s/[0-9]+(\.[0-9]+)+\+[0-9]+/$NEW_VERSION/" $MAJOR_VERSION/apache/Dockerfile $MAJOR_VERSION/fpm/Dockerfile $MAJOR_VERSION/fpm-alpine/Dockerfile
+sed -i -e "s/[A-Fa-f0-9]{64}/$SHA256_CHECKSUM/" $MAJOR_VERSION/apache/Dockerfile $MAJOR_VERSION/fpm/Dockerfile $MAJOR_VERSION/fpm-alpine/Dockerfile
 
 # After that, check and commit
 echo "git add 3.0 ; git commit -m 'Upgrading to LTS Version ${NEW_VERSION}' && git tag ${NEW_VERSION}"

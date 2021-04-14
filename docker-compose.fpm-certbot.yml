@@ -39,11 +39,12 @@ services:
       - ./certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   lime-db:
-    image: mysql:5.7
+    image: postgres:10
+    volumes:
+      - db-data:/var/lib/postgresql
     environment:
-      - "MYSQL_USER=limesurvey"
-      - "MYSQL_DATABASE=limesurvey"
-      - "MYSQL_PASSWORD=secret"
-      - "MYSQL_ROOT_PASSWORD=secret"
+      - "POSTGRES_USER=limesurvey"
+      - "POSTGRES_DB=limesurvey"
+      - "POSTGRES_PASSWORD=secret"
 volumes:
   lime:
