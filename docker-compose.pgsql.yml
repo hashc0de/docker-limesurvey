@@ -16,16 +16,18 @@ services:
       - "DB_TYPE=pgsql"
       - "DB_PORT=5432"
       - "DB_HOST=lime-db"
-      - "DB_PASSWORD=secret"
-      - "ADMIN_PASSWORD=foobar"
+      - "DB_PASSWORD=AXRBAkMxPdpSQ7B"
+      - "ADMIN_PASSWORD=TRtArHa9zBKcxFb"
   lime-db:
     image: postgres:10
     volumes:
       - db-data:/var/lib/postgresql
+    ports:
+      - "0.0.0.0:5432:5432"
     environment:
       - "POSTGRES_USER=limesurvey"
       - "POSTGRES_DB=limesurvey"
-      - "POSTGRES_PASSWORD=secret"
+      - "POSTGRES_PASSWORD=AXRBAkMxPdpSQ7B"
 
 volumes:
   db-data:
